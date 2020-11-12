@@ -7,7 +7,7 @@ namespace ConsoleApp2
     {
         static void Main()
         {
-            Console.WriteLine("Как заполним двумерный массив (8x8)?\n0-рандомно\n1-вручную");
+            Console.WriteLine("Как заполним двумерный массив (8x8)?\n0-рандомно\n1-вручную\n2-возьмём готовый");
             int choise;
             int[][] arr = new int[8][];
             Random rnd = new Random();
@@ -57,6 +57,18 @@ namespace ConsoleApp2
                 
             }
 
+            else if (choise == 2)
+            {
+                arr[0] = new int[8] { 1, 2, 3, 4, 5, 6, 7, 8 };
+                arr[1] = new int[8] { 2, 2, 3, -5, 4, 6, -10, 8 };
+                arr[2] = new int[8] { 3, 2, 3, 4, 5, 6, 7, 8 };
+                arr[3] = new int[8] { 4, -5, 4, 4, 5, 6, 7, 8 };
+                arr[4] = new int[8] { 5, 2, 3, 5, 5, 6, 7, 8 };
+                arr[5] = new int[8] { 6, 2, 3, 6, 5, 6, 7, 8 };
+                arr[6] = new int[8] { 7, 2, 3, 7, 5, 6, 7, 8 };
+                arr[7] = new int[8] { 8, 2, 3, 8, 5, 6, 7, 8 };
+            }
+
             try
             {
                 foreach (int[] row in arr)
@@ -93,7 +105,7 @@ namespace ConsoleApp2
                 Console.ReadKey();
             }
 
-            bool isnegative;
+            bool isnegative, justonrnegative = false;
             int sum;
 
             for (int i = 0; i < arr.Length; i++)
@@ -106,12 +118,14 @@ namespace ConsoleApp2
                     if (arr[i][j] < 0) 
                     { 
                         isnegative = true;
+                        justonrnegative = true;
                         sum = arr[i].Sum();
                     }        
                 }
 
                 if (isnegative) { Console.WriteLine($"\nСумма элементов {i + 1} строки: {sum}"); }
             }
+            if (justonrnegative == false) { Console.WriteLine("\nВ массиве нет строк с отрицательными элементами"); }
 
             Console.ReadKey();
         }
